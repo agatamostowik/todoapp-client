@@ -1,13 +1,111 @@
+
+
+html,
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  margin: 0px;
+  padding: 0px;
+  
+}
+
+body {
+  padding: 100px 200px;
+  
+  /* background: #e3f2fd; */
+  background: linear-gradient(135deg, #4badf8, #2c4fcf);
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  height: 100vh;
+
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+.wrapper {
+  margin-top: 100px;
+  max-width: 150%;
+}
+
+.todolist {
+  justify-items: end;
+  min-width: 450px;
+  
+}
+
+.todoList-nested {
+  margin-left:10%;
+}
+.todo-container {
+  display: flex;
+  
+  position: relative;
+  padding: 10px;
+  margin-top: 10px;
+  justify-content: space-between;
+  border: 1px solid #d5e0e9;
+  border-radius: 5px;
+  background-color: white;
+  height: 25px;
+ 
+  
+}
+
+
+.todo-container.label {
+  width: 400px;
+}
+.label {
+  width: 100%;
+  font-size: 19px;
+  padding-left: 10px;
+  display:inline-block
+}
+
+.isOpen  {
+  transform: rotate(180deg);
+  
+}
+
+.todo-container .add-new {
+  width: 100%;
+}
+
+
+input.add-new {
+  outline: none;
+  border: none;
+  width: 100%;
+  height: 25px;
+  position: relative;
+}
+.btn {
+  outline: none;
+  border: none;
+  background-color: hsl(28, 96%, 55%);
+  border-radius: 3px;
+  color: white;
+  width: 80px;
+  padding: 1px 4px 1px 4px;
+}
+
+.addingNew {
+  display: flex;
+}
+
+.checkbox {
+  border: 1px solid rgb(121, 118, 118);
+  border-radius: 3px;
+  height: 25px;
+  width: 25px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.checkbox:hover{
+  border: 2px solid rgb(30, 83, 144);
 }
