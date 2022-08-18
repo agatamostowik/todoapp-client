@@ -1,16 +1,11 @@
-
-
 html,
 body {
   margin: 0px;
   padding: 0px;
-  
 }
 
 body {
   padding: 100px 200px;
-  
-  /* background: #e3f2fd; */
   background: linear-gradient(135deg, #4badf8, #2c4fcf);
   background-repeat: no-repeat;
   background-size: 100% auto;
@@ -29,32 +24,51 @@ code {
 .wrapper {
   margin-top: 100px;
   max-width: 150%;
+ 
+  justify-items: end;
 }
 
 .todolist {
-  justify-items: end;
+  
   min-width: 450px;
   
 }
 
 .todoList-nested {
-  margin-left:10%;
+  margin-left: 10%;
 }
 .todo-container {
-  display: flex;
   
-  position: relative;
   padding: 10px;
-  margin-top: 10px;
+  display: flex;
+  position: relative;
   justify-content: space-between;
   border: 1px solid #d5e0e9;
   border-radius: 5px;
   background-color: white;
   height: 25px;
- 
-  
+  width:100%
 }
+.todo-container-context{
+display:flex;
+justify-content: space-between;
+align-items: center;
+margin-top: 10px;
+width: 100%;
 
+}
+.todo-container-checked{
+ 
+  display: flex;
+ width:100%;
+  padding: 10px;
+  
+  justify-content: space-between;
+  border: 1px solid #d5e0e9;
+  border-radius: 5px;
+  opacity:70%;
+  height: 25px
+}
 
 .todo-container.label {
   width: 400px;
@@ -63,25 +77,35 @@ code {
   width: 100%;
   font-size: 19px;
   padding-left: 10px;
-  display:inline-block
+  display: inline-block;
 }
 
-.isOpen  {
+.isOpen {
   transform: rotate(180deg);
+}
+
+.add-new {
+  margin-top:10px;
+  margin-right: 24px;
+  padding: 10px;
   
-}
+  
+  border: 1px solid #d5e0e9;
+  border-radius: 5px;
+  background-color: white;
+  
 
-.todo-container .add-new {
-  width: 100%;
 }
-
 
 input.add-new {
   outline: none;
   border: none;
-  width: 100%;
+  padding:0;
+  margin:0;
   height: 25px;
-  position: relative;
+  width:100%;
+
+  
 }
 .btn {
   outline: none;
@@ -95,17 +119,27 @@ input.add-new {
 
 .addingNew {
   display: flex;
+justify-content: space-between;
+
+ 
 }
 
 .checkbox {
-  border: 1px solid rgb(121, 118, 118);
+  border: 1px solid rgb(37, 37, 37);
   border-radius: 3px;
   height: 25px;
   width: 25px;
   box-sizing: border-box;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
 }
 
-.checkbox:hover{
+.checkbox input {
+  display: none;
+}
+.checkbox:hover {
   border: 2px solid rgb(30, 83, 144);
 }
