@@ -1,11 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { checkboxReducer } from "./slices/checkboxSlice";
-import { todosSlice } from "./slices/todosSlice";
+import { todosReducers } from "./slices/todosSlice";
 
 const store = configureStore({
   reducer:  {
     checkbox : checkboxReducer,
-    todos: todosSlice.reducer
+    todos: todosReducers
   },
 });
 

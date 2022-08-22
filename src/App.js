@@ -1,8 +1,7 @@
 import { TodoList } from "./components/TodoList";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 function App() {
-  const dispatch = useDispatch();
   const todos = useSelector((state) => {
     return state.todos.data;
   });

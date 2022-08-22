@@ -1,28 +1,55 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addTodo } from "../redux/slices/todosSlice";
+
 export const AddNew = () => {
-  const [addingNew, setAddingNew] = useState(false);
+  const [editMode, setEditMode] = useState(false);
+  const [value, setValue] = useState("");
+  const dispatch = useDispatch();
 
   const handleClick = () => {
-    setAddingNew(!addingNew);
+    setEditMode(!editMode);
+  };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    dispatch(
+      addTodo({
+        label: value,
+      })
+    );
+
+    setValue("");
+    setEditMode(false);
+  };
+  const handleChange = (event) => {
+    setValue(event.target.value);
   };
 
   return (
-    <div className ="add-new">
-      <div  >
-        {!addingNew ? (
+    <>
+      <div className="add-new">
+        {!editMode ? (
           <input
-          className ="add-new"
+            className="add-new"
             type="text"
             placeholder="Add new"
             onClick={handleClick}
           ></input>
         ) : (
-          <div className="addingNew">
-            <input className="add-new" ></input>
-            <button className="btn">Add new</button>
-          </div>
+          <form className="addingNew" onSubmit={handleSubmit}>
+            <input
+              className="add-new"
+              type="text"
+              onChange={handleChange}
+              value={value}
+              autoFocus={true}
+            ></input>
+            <button className="btn" type="submit">
+              Add
+            </button>
+          </form>
         )}
       </div>
-    </div>
+    </>
   );
 };
