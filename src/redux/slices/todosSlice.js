@@ -3,48 +3,12 @@ import { createSlice } from "@reduxjs/toolkit";
 export const todosSlice = createSlice({
   name: "todos",
   initialState: {
-    testowy: "pk",
-    data: [
-      {
-        id: Math.random(),
-        label: "A",
-        subtasks: [
-          {
-            id: "2",
-            label: "C",
-            subtasks: [],
-          },
-          {
-            id: "3",
-            label: "D",
-            subtasks: [
-              {
-                id: "5",
-                label: "H",
-                subtasks: [],
-              },
-              {
-                id: "6",
-                label: "L",
-                subtasks: [],
-              },
-            ],
-          },
-        ],
-      },
-      {
-        id: "4",
-        label: "B",
-        subtasks: [],
-      },
-      {
-        id: "7",
-        label: "P",
-        subtasks: [],
-      },
-    ],
+    data: [],
   },
   reducers: {
+    setTodos: (state, action) => {
+      return { ...state, data: action.payload.todos };
+    },
     addTodo: (state, action) => {
       const newTodo = {
         id: Math.random(),
@@ -53,9 +17,19 @@ export const todosSlice = createSlice({
       };
       return { ...state, data: [...state.data, newTodo] };
     },
+    removeTodo: (state, action) => {
+      return {
+        ...state,
+        data: state.data.filter((todo) => action.payload.id !== todo.id),
+      };
+    },
   },
 });
 
 export const todosReducers = todosSlice.reducer;
 
 export const addTodo = todosSlice.actions.addTodo;
+
+export const removeTodo = todosSlice.actions.removeTodo;
+
+export const setTodos = todosSlice.actions.setTodos;

@@ -26,30 +26,25 @@ export const AddNew = () => {
   };
 
   return (
-    <>
-      <div className="add-new">
-        {!editMode ? (
+    <div className="add-new">
+      {!editMode ? (
+        <div className="add-new-label" onClick={handleClick}>
+          Add new
+        </div>
+      ) : (
+        <form className="add-new-form" onSubmit={handleSubmit}>
           <input
-            className="add-new"
+            className="add-new-input"
             type="text"
-            placeholder="Add new"
-            onClick={handleClick}
+            onChange={handleChange}
+            value={value}
+            autoFocus={true}
           ></input>
-        ) : (
-          <form className="addingNew" onSubmit={handleSubmit}>
-            <input
-              className="add-new"
-              type="text"
-              onChange={handleChange}
-              value={value}
-              autoFocus={true}
-            ></input>
-            <button className="btn" type="submit">
-              Add
-            </button>
-          </form>
-        )}
-      </div>
-    </>
+          <button className="btn" type="submit">
+            Add
+          </button>
+        </form>
+      )}
+    </div>
   );
 };

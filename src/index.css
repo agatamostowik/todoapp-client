@@ -4,6 +4,10 @@ body {
   padding: 0px;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   padding: 100px 200px;
   background: linear-gradient(135deg, #4badf8, #2c4fcf);
@@ -19,10 +23,11 @@ body {
 }
 
 .wrapper {
-  margin-top: 100px;
   max-width: 700px;
-min-width:500px;
+  min-width: 500px;
   justify-items: end;
+  width: 100%;
+  height: 100%;
 }
 
 .todolist {
@@ -81,21 +86,31 @@ min-width:500px;
   margin-top: 10px;
   margin-right: 34px;
   padding: 10px;
-
   border: 1px solid #d5e0e9;
   border-radius: 5px;
   background-color: white;
+  height: 25px;
 }
 
-input.add-new {
+.add-new-label {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 15px;
+  color: grey;
+  cursor: pointer;
+}
+
+.add-new-input {
   outline: none;
   border: none;
   padding: 0;
   margin: 0;
-  height: 25px;
   width: 100%;
-  
+  font-size: 15px;
 }
+
 .btn {
   outline: none;
   border: none;
@@ -103,12 +118,7 @@ input.add-new {
   border-radius: 3px;
   color: white;
   width: 80px;
-  padding: 1px 4px 1px 4px;
-}
-
-.addingNew {
-  display: flex;
-  justify-content: space-between;
+  padding: 5px 4px 5px 4px;
 }
 
 .checkbox {
@@ -145,8 +155,188 @@ input.add-new {
 }
 .dropdown-item {
   padding: 10px;
+  cursor: pointer;
 }
 
 .dropdown-item:last-child {
   border-top: 1px solid grey;
+}
+
+.add-new-form {
+  width: 100%;
+  display: flex;
+}
+
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+.loader {
+  margin: 100px auto;
+  font-size: 25px;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  position: relative;
+  text-indent: -9999em;
+  -webkit-animation: load5 1.1s infinite ease;
+  animation: load5 1.1s infinite ease;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+}
+@-webkit-keyframes load5 {
+  0%,
+  100% {
+    box-shadow: 0em -2.6em 0em 0em #ffffff,
+      1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2),
+      2.5em 0em 0 0em rgba(255, 255, 255, 0.2),
+      1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2),
+      0em 2.5em 0 0em rgba(255, 255, 255, 0.2),
+      -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.2),
+      -2.6em 0em 0 0em rgba(255, 255, 255, 0.5),
+      -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.7);
+  }
+  12.5% {
+    box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.7),
+      1.8em -1.8em 0 0em #ffffff, 2.5em 0em 0 0em rgba(255, 255, 255, 0.2),
+      1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2),
+      0em 2.5em 0 0em rgba(255, 255, 255, 0.2),
+      -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.2),
+      -2.6em 0em 0 0em rgba(255, 255, 255, 0.2),
+      -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.5);
+  }
+  25% {
+    box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.5),
+      1.8em -1.8em 0 0em rgba(255, 255, 255, 0.7), 2.5em 0em 0 0em #ffffff,
+      1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2),
+      0em 2.5em 0 0em rgba(255, 255, 255, 0.2),
+      -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.2),
+      -2.6em 0em 0 0em rgba(255, 255, 255, 0.2),
+      -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2);
+  }
+  37.5% {
+    box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.2),
+      1.8em -1.8em 0 0em rgba(255, 255, 255, 0.5),
+      2.5em 0em 0 0em rgba(255, 255, 255, 0.7), 1.75em 1.75em 0 0em #ffffff,
+      0em 2.5em 0 0em rgba(255, 255, 255, 0.2),
+      -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.2),
+      -2.6em 0em 0 0em rgba(255, 255, 255, 0.2),
+      -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2);
+  }
+  50% {
+    box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.2),
+      1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2),
+      2.5em 0em 0 0em rgba(255, 255, 255, 0.5),
+      1.75em 1.75em 0 0em rgba(255, 255, 255, 0.7), 0em 2.5em 0 0em #ffffff,
+      -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.2),
+      -2.6em 0em 0 0em rgba(255, 255, 255, 0.2),
+      -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2);
+  }
+  62.5% {
+    box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.2),
+      1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2),
+      2.5em 0em 0 0em rgba(255, 255, 255, 0.2),
+      1.75em 1.75em 0 0em rgba(255, 255, 255, 0.5),
+      0em 2.5em 0 0em rgba(255, 255, 255, 0.7), -1.8em 1.8em 0 0em #ffffff,
+      -2.6em 0em 0 0em rgba(255, 255, 255, 0.2),
+      -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2);
+  }
+  75% {
+    box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.2),
+      1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2),
+      2.5em 0em 0 0em rgba(255, 255, 255, 0.2),
+      1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2),
+      0em 2.5em 0 0em rgba(255, 255, 255, 0.5),
+      -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.7), -2.6em 0em 0 0em #ffffff,
+      -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2);
+  }
+  87.5% {
+    box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.2),
+      1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2),
+      2.5em 0em 0 0em rgba(255, 255, 255, 0.2),
+      1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2),
+      0em 2.5em 0 0em rgba(255, 255, 255, 0.2),
+      -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.5),
+      -2.6em 0em 0 0em rgba(255, 255, 255, 0.7), -1.8em -1.8em 0 0em #ffffff;
+  }
+}
+@keyframes load5 {
+  0%,
+  100% {
+    box-shadow: 0em -2.6em 0em 0em #ffffff,
+      1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2),
+      2.5em 0em 0 0em rgba(255, 255, 255, 0.2),
+      1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2),
+      0em 2.5em 0 0em rgba(255, 255, 255, 0.2),
+      -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.2),
+      -2.6em 0em 0 0em rgba(255, 255, 255, 0.5),
+      -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.7);
+  }
+  12.5% {
+    box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.7),
+      1.8em -1.8em 0 0em #ffffff, 2.5em 0em 0 0em rgba(255, 255, 255, 0.2),
+      1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2),
+      0em 2.5em 0 0em rgba(255, 255, 255, 0.2),
+      -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.2),
+      -2.6em 0em 0 0em rgba(255, 255, 255, 0.2),
+      -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.5);
+  }
+  25% {
+    box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.5),
+      1.8em -1.8em 0 0em rgba(255, 255, 255, 0.7), 2.5em 0em 0 0em #ffffff,
+      1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2),
+      0em 2.5em 0 0em rgba(255, 255, 255, 0.2),
+      -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.2),
+      -2.6em 0em 0 0em rgba(255, 255, 255, 0.2),
+      -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2);
+  }
+  37.5% {
+    box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.2),
+      1.8em -1.8em 0 0em rgba(255, 255, 255, 0.5),
+      2.5em 0em 0 0em rgba(255, 255, 255, 0.7), 1.75em 1.75em 0 0em #ffffff,
+      0em 2.5em 0 0em rgba(255, 255, 255, 0.2),
+      -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.2),
+      -2.6em 0em 0 0em rgba(255, 255, 255, 0.2),
+      -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2);
+  }
+  50% {
+    box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.2),
+      1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2),
+      2.5em 0em 0 0em rgba(255, 255, 255, 0.5),
+      1.75em 1.75em 0 0em rgba(255, 255, 255, 0.7), 0em 2.5em 0 0em #ffffff,
+      -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.2),
+      -2.6em 0em 0 0em rgba(255, 255, 255, 0.2),
+      -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2);
+  }
+  62.5% {
+    box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.2),
+      1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2),
+      2.5em 0em 0 0em rgba(255, 255, 255, 0.2),
+      1.75em 1.75em 0 0em rgba(255, 255, 255, 0.5),
+      0em 2.5em 0 0em rgba(255, 255, 255, 0.7), -1.8em 1.8em 0 0em #ffffff,
+      -2.6em 0em 0 0em rgba(255, 255, 255, 0.2),
+      -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2);
+  }
+  75% {
+    box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.2),
+      1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2),
+      2.5em 0em 0 0em rgba(255, 255, 255, 0.2),
+      1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2),
+      0em 2.5em 0 0em rgba(255, 255, 255, 0.5),
+      -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.7), -2.6em 0em 0 0em #ffffff,
+      -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2);
+  }
+  87.5% {
+    box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.2),
+      1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2),
+      2.5em 0em 0 0em rgba(255, 255, 255, 0.2),
+      1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2),
+      0em 2.5em 0 0em rgba(255, 255, 255, 0.2),
+      -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.5),
+      -2.6em 0em 0 0em rgba(255, 255, 255, 0.7), -1.8em -1.8em 0 0em #ffffff;
+  }
 }
