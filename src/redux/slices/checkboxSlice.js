@@ -4,8 +4,6 @@ const checkboxSlice = createSlice({
   name: "checkbox",
   initialState: {
     checkedIds: [],
-    firstName: "Paaweł",
-    lastName: "K", 
   },
   reducers: {
     toggleCheck: (state, action) => {
@@ -15,10 +13,11 @@ const checkboxSlice = createSlice({
           checkedIds: state.checkedIds.filter((id) => id !== action.payload.id),
         };
       } else {
-        return { ...state, checkedIds: [...state.checkedIds, action.payload.id] };
+        return {
+          ...state,
+          checkedIds: [...state.checkedIds, action.payload.id],
+        };
       }
-
-   
     },
   },
 });

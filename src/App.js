@@ -2,14 +2,7 @@ import { useEffect, useState } from "react";
 import { TodoList } from "./components/TodoList";
 import { useSelector, useDispatch } from "react-redux";
 import { setTodos } from "./redux/slices/todosSlice";
-
-const getUrl = () => {
-  if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
-    return "http://localhost:3001";
-  } else {
-    return "https://todos-node-client.herokuapp.com";
-  }
-};
+import { getUrl } from "./helpers";
 
 const fetchTodos = async () => {
   const url = getUrl();
@@ -31,12 +24,11 @@ function App() {
   });
 
   useEffect(() => {
-    setIsLoading(true);
-
     async function getTodos() {
+      setIsLoading(true);
+
       try {
         const serverTodos = await fetchTodos();
-
         dispatch(setTodos({ todos: serverTodos }));
       } catch (error) {
         console.log(error);
@@ -49,15 +41,22 @@ function App() {
   }, []);
 
   return (
-    <>
+    <div className="wrapper2">
       {isLoading ? (
-        <div className="loader"></div>
+        <div className="loader-contaiener">
+          <div className="loader"></div>
+        </div>
       ) : isError ? (
         <div>Error</div>
       ) : (
-        <TodoList isRoot={true} todos={filteredTodos} />
+        <TodoList
+          isRoot={true}
+          todos={filteredTodos}
+          ancestorsIds={[]}
+          parentId={null}
+        />
       )}
-    </>
+    </div>
   );
 }
 

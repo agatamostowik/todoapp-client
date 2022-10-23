@@ -1,38 +1,20 @@
-import { Todo } from "./Todo";
 import { AddNew } from "./AddNew";
-import classNames from "classnames";
-import { useSelector } from "react-redux";
-
-const Todo2 = (props) => {
-  const todos = useSelector((state) => {
-    return state.todos.data;
-  });
-
-  const filteredTodos = todos.filter((todo) => {
-    return todo.parentId === props.todo.id;
-  });
-
-  return (
-    <div>
-      <div>{props.todo.label}</div>
-      <TodoList isRoot={false} todos={filteredTodos} />
-    </div>
-  );
-};
+import { Todo } from "./Todo";
 
 export const TodoList = (props) => {
-  const { todos, isRoot } = props;
-  console.log(todos);
-  const todoListClass = classNames({
-    "todoList-nested": !isRoot,
-  });
+  const { todos, isRoot, ancestorsIds, parentId } = props;
+
+  if (todos[0]?.id === 5) {
+    console.log(todos);
+  }
 
   return (
-    <div className={todoListClass}>
+    <div className="todoList-nested">
       {todos.map((todo, index) => {
-        return <Todo2 key={index} todo={todo} />;
+        return <Todo key={index} todo={todo} />;
       })}
-      <AddNew />
+
+      <AddNew ancestorsIds={ancestorsIds} parentId={parentId} />
     </div>
   );
 };
