@@ -1,6 +1,6 @@
 FROM nginx:alpine
 
 RUN npm install
-RUN npm build
+CMD ['npm' 'run' 'build']
 
 COPY build /usr/share/nginx/html
