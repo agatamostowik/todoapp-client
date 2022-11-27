@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { ReactComponent as HomePicture } from "../../assets/main-picture.svg";
-// import picture from "../../assets/Picture1.png";
+import picture from "../../assets/rsz_main-picture.png";
 import "./home.scss";
 
 export const Home = () => {
@@ -27,8 +27,8 @@ export const Home = () => {
               </div>
             </section>
             <div className="home__picture">
-              <HomePicture width="100%" height="100%" viewBox="0 0 576 386" />
-              {/* <img src={picture} /> */}
+              {/* <HomePicture width="100%" height="100%" viewBox="0 0 576 386" /> */}
+              <img alt="todolist" src={picture} />
             </div>
           </div>
         </div>
