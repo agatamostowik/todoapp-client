@@ -1,0 +1,31 @@
+.input_component {
+  margin-bottom: 25px;
+
+  &:focus-visible {
+    outline: #1a39b3 auto 1px;
+  }
+
+  @media (min-width: 900px) {
+    min-width: 460px;
+  }
+  .label {
+    padding-bottom: 6px;
+    letter-spacing: 0.626481px;
+    font-size: 12px;
+    display: block;
+
+    @media (min-width: 900px) {
+      padding-bottom: 12px;
+      font-size: 16px;
+    }
+  }
+
+  .input {
+    width: 100%;
+    padding: 13px 16px;
+    border: 1px solid #e7e7e7;
+    border-radius: 9.84px;
+    background-color: #fff;
+    font-size: 14px;
+  }
+}

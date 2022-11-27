@@ -23,11 +23,18 @@ export const todosSlice = createSlice({
       };
     },
     editTodo: (state, action) => {
-      const filteredTodos = state.data.filter((todo) => {
-        return todo.id !== action.payload.id;
+      const foundTodo = state.data.find((todo) => {
+        return todo.id === action.payload.id;
       });
-      // console.log(filteredTodos);
-      return { ...state, data: [...filteredTodos, action.payload] };
+
+      return {
+        ...state,
+        data: [
+          ...state.data.slice(0, state.data.indexOf(foundTodo)),
+          action.payload,
+          ...state.data.slice(state.data.indexOf(foundTodo) + 1),
+        ],
+      };
     },
   },
 });

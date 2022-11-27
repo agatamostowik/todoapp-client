@@ -1,0 +1,13 @@
+#signup {
+  width: 100%;
+  @media (min-width: 900px) {
+    max-width: 580px;
+  }
+  .signup__content {
+    padding: 80px 42px 95px 42px;
+  }
+  .btn {
+    width: 100%;
+    margin-top: 24px;
+  }
+}

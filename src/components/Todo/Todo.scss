@@ -1,0 +1,47 @@
+.row-container {
+  display: flex;
+
+  margin-bottom: 15px;
+  align-items: center;
+  // width: calc(100% + 26px);
+  width: 100%;
+
+  .todo__color {
+    width: 14px;
+    background-color: #af5acf;
+    border-radius: 5px 0px 0px 5px;
+  }
+
+  .todo__label {
+    font-size: 14px;
+    font-weight: 500;
+    width: 100%;
+    padding: 10px;
+  }
+  .todo__label__wrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  .chevron-container {
+    padding: 8px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .status-dropdown-container {
+    position: relative;
+    font-size: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .status-dropdown {
+    position: absolute;
+    background-color: white;
+    z-index: 1;
+    padding: 5px;
+    border: 1px solid red;
+  }
+}

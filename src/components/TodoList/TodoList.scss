@@ -1,0 +1,24 @@
+// @use "src/index"
+
+.todolist__container {
+  // @include index.container__border;
+  width: 100%;
+  max-width: 700px;
+
+  .todolist__wrapper {
+    display: flex;
+    gap: 15px;
+    flex-direction: column;
+    margin-left: 15px;
+  }
+
+  .isRoot {
+    padding-top: 19px;
+    padding-left: 13px;
+    padding-bottom: 71px;
+    margin-left: 0px;
+  }
+}
+// .todoList-nested {
+//   margin-left: 10%;
+// }

@@ -1,62 +1,54 @@
+import { Route, Routes, Navigate } from "react-router-dom";
+import { Home } from "./pages/Home/Home";
+import { Dashboard } from "./pages/Dashboard/Dashboard";
+import { Signin } from "./pages/Signin/Signin";
+import { Signup } from "./pages/Signup/Signup";
 import { useEffect, useState } from "react";
-import { TodoList } from "./components/TodoList";
-import { useSelector, useDispatch } from "react-redux";
-import { setTodos } from "./redux/slices/todosSlice";
 import { getUrl } from "./helpers";
+import { useDispatch, useSelector } from "react-redux";
+import { setUser } from "./redux/slices/userSlice";
 
-const fetchTodos = async () => {
+const fetchProfile = async () => {
   const url = getUrl();
-  const response = await fetch(`${url}/api/todos`);
+  const response = await fetch(`${url}/api/auth/me`, {
+    credentials: "include",
+  });
   return response.json();
 };
 
 function App() {
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const dispatch = useDispatch();
-  const todos = useSelector((state) => {
-    return state.todos.data;
-  });
-
-  const filteredTodos = todos.filter((todo) => {
-    return todo.parentId === null;
+  const isAuthenticated = useSelector((state) => {
+    return state.user.isAuthenticated;
   });
 
   useEffect(() => {
-    async function getTodos() {
-      setIsLoading(true);
-
+    async function getProfile() {
       try {
-        const serverTodos = await fetchTodos();
-        dispatch(setTodos({ todos: serverTodos }));
+        const user = await fetchProfile();
+        dispatch(setUser({ user: user }));
       } catch (error) {
         console.log(error);
-        setIsError(true);
       }
       setIsLoading(false);
     }
 
-    getTodos();
+    getProfile();
   }, []);
 
+  if (isLoading) {
+    return <div className="loader" />;
+  }
+
   return (
-    <div className="wrapper2">
-      {isLoading ? (
-        <div className="loader-contaiener">
-          <div className="loader"></div>
-        </div>
-      ) : isError ? (
-        <div>Error</div>
-      ) : (
-        <TodoList
-          isRoot={true}
-          todos={filteredTodos}
-          ancestorsIds={[]}
-          parentId={null}
-        />
-      )}
-    </div>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/signin" element={<Signin />} />
+      <Route path="/signup" element={<Signup />} />
+      <Route path="/dashboard" element={<Dashboard />} />
+    </Routes>
   );
 }
 

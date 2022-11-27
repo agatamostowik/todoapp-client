@@ -1,0 +1,15 @@
+.tag__list {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 9px;
+  padding: 0 10px 10px 10px;
+  .tag {
+    width: 59px;
+    height: 19px;
+    background-color: #c0effa;
+    border-radius: 2px;
+    font-size: 10px;
+    text-align: center;
+  }
+}

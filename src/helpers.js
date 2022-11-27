@@ -5,3 +5,17 @@ export const getUrl = () => {
     return "https://todos-node-client.herokuapp.com";
   }
 };
+
+export const updateTodo = async (todoId, data) => {
+  const url = getUrl();
+  const response = await fetch(`${url}/api/todos/${todoId}/edit`, {
+    method: "PUT",
+    body: JSON.stringify(data),
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  return response.json();
+};
