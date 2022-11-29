@@ -63,12 +63,16 @@ export function Dashboard() {
               <div>Page not found</div>
             </div>
           ) : (
-            <TodoList
-              isRoot={true}
-              todos={filteredTodos}
-              ancestorsIds={[]}
-              parentId={null}
-            />
+            <div id="todolist" className="container__border">
+              <div className="container">
+                <TodoList
+                  isRoot={true}
+                  todos={filteredTodos}
+                  ancestorsIds={[]}
+                  parentId={null}
+                />
+              </div>
+            </div>
           )}
         </>
       )}

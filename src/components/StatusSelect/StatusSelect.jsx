@@ -2,8 +2,9 @@ import { useEffect, useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { editTodo } from "../../redux/slices/todosSlice";
 import { updateTodo } from "../../helpers";
+import { Dropdown } from "../DropdownOptions/Dropdown/Dropdown";
 
-export const StatusDropdown = (props) => {
+export const StatusSelect = (props) => {
   const { todo } = props;
   const [isStatusDropdownOpen, setIsStatusDropdownOpen] = useState(false);
 
@@ -24,7 +25,7 @@ export const StatusDropdown = (props) => {
     };
   });
 
-  const handleStatus = () => {
+  const handleStatusDropdown = () => {
     setIsStatusDropdownOpen(!isStatusDropdownOpen);
   };
 
@@ -36,36 +37,21 @@ export const StatusDropdown = (props) => {
     } catch (error) {}
   };
 
+  const options = [
+    { label: "New", value: "new" },
+    { label: "In progress", value: "in_progress" },
+    { label: "Done", value: "done" },
+  ];
+
   return (
     <div ref={ref} id="status" className="status-dropdown-container">
-      <div onClick={handleStatus}>{todo.status}</div>
+      <div onClick={handleStatusDropdown}>{todo.status}</div>
       {isStatusDropdownOpen ? (
-        <div className={`dropdown${isStatusDropdownOpen ? "-open" : ""}`}>
-          <div
-            className="dropdown-item"
-            onClick={() => {
-              updateStatus("new");
-            }}
-          >
-            New
-          </div>
-          <div
-            className="dropdown-item"
-            onClick={() => {
-              updateStatus("in_progress");
-            }}
-          >
-            In progress
-          </div>
-          <div
-            className="dropdown-item"
-            onClick={() => {
-              updateStatus("done");
-            }}
-          >
-            Done
-          </div>
-        </div>
+        <Dropdown
+          isStatusDropdownOpen={isStatusDropdownOpen}
+          options={options}
+          handleClick={updateStatus}
+        />
       ) : null}
     </div>
   );

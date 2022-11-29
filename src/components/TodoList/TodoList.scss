@@ -1,9 +1,6 @@
-// @use "src/index"
-
 .todolist__container {
-  // @include index.container__border;
-  width: 100%;
-  max-width: 700px;
+  // width: 100%;
+  // max-width: 700px;
 
   .todolist__wrapper {
     display: flex;
@@ -19,6 +16,3 @@
     margin-left: 0px;
   }
 }
-// .todoList-nested {
-//   margin-left: 10%;
-// }

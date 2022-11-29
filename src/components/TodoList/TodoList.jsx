@@ -11,7 +11,7 @@ export const TodoList = (props) => {
 
   return (
     <div className="todolist__container">
-      <div className={`todolist__wrapper ${isRoot ? `isRoot` : ""} container`}>
+      <div className={`todolist__wrapper ${isRoot ? `isRoot` : ""}`}>
         {todos.map((todo, index) => {
           return <Todo key={index} todo={todo} />;
         })}

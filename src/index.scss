@@ -123,6 +123,12 @@ input:focus {
   border-radius: 13.5267px;
 }
 
+#todolist.container__border {
+  @media (min-width: 900px) {
+    max-width: 700px;
+  }
+}
+
 .sign__form {
   padding-bottom: 50px;
 }

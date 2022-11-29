@@ -17,6 +17,9 @@
     font-weight: 500;
     width: 100%;
     padding: 10px;
+    @media (min-width: 900px) {
+      font-size: 16px;
+    }
   }
   .todo__label__wrapper {
     flex: 1;
@@ -36,6 +39,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    @media (min-width: 900px) {
+      font-size: 12px;
+    }
   }
   .status-dropdown {
     position: absolute;
