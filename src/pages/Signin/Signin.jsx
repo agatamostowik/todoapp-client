@@ -31,7 +31,6 @@ export const Signin = () => {
     return state.user.isAuthenticated;
   });
 
-  console.log(isAuthenticated);
   const handleEmail = (event) => {
     setEmail(event.target.value);
   };

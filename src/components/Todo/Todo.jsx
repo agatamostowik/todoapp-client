@@ -1,7 +1,6 @@
 import { useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
-import { DropdownOptions } from "../DropdownOptions/DropdownOptions";
 import { TodoList } from "../TodoList/TodoList";
 import { updateTodo } from "../../helpers";
 import { editTodo } from "../../redux/slices/todosSlice";
@@ -44,7 +43,6 @@ export const Todo = (props) => {
           </div>
         </div>
         <SettingsSelect todo={props.todo} />
-        {/* <DropdownOptions todoId={props.todo.id} handleEdit={handleEdit} /> */}
       </div>
       {isOpen ? (
         <TodoList

@@ -3,10 +3,9 @@ import { useDispatch } from "react-redux";
 import { FiMoreVertical } from "react-icons/fi";
 import { deleteTodo, editTodo } from "../../redux/slices/todosSlice";
 import { getUrl, updateTodo } from "../../helpers";
-import { Dropdown } from "../DropdownOptions/Dropdown/Dropdown";
+import { Dropdown } from "../Dropdown/Dropdown";
 import { Modal } from "../Modal";
 import { EditTodo } from "../EditTodo/EditTodo";
-// import "./DropdownOptions.scss";
 
 const removeTodo = async (todoId) => {
   const url = getUrl();
@@ -87,7 +86,7 @@ export const SettingsSelect = (props) => {
       console.log(error);
     }
   };
-  //TODO przesun logike zwiazana z zawartoscia modala poza komponent settingsselect
+  //TODO przesun logike zwiazana z zawartoscia modala poza komponent settingsselect, do edittodo
 
   return (
     <>
@@ -116,15 +115,7 @@ export const SettingsSelect = (props) => {
               options={options}
               handleClick={onOptionClick}
             />
-          ) : //   <>
-          //     <div className="dropdown-item" onClick={handleEdit}>
-          //       Edit
-          //     </div>
-          //     <div className="dropdown-item" onClick={handleRemove}>
-          //       Remove
-          //     </div>
-          //   </>
-          null}
+          ) : null}
         </div>
       </div>
     </>

@@ -3,7 +3,9 @@ import { Navigate } from "react-router-dom";
 import { TodoList } from "../../components/TodoList/TodoList";
 import { useSelector, useDispatch } from "react-redux";
 import { setTodos } from "../../redux/slices/todosSlice";
+
 import { getUrl } from "../../helpers";
+import { UserPanel } from "../../components/UserPanel/UserPanel";
 
 const fetchTodos = async () => {
   const url = getUrl();
@@ -63,16 +65,19 @@ export function Dashboard() {
               <div>Page not found</div>
             </div>
           ) : (
-            <div id="todolist" className="container__border">
-              <div className="container">
-                <TodoList
-                  isRoot={true}
-                  todos={filteredTodos}
-                  ancestorsIds={[]}
-                  parentId={null}
-                />
+            <>
+              <UserPanel />
+              <div id="todolist" className="container__border">
+                <div className="container">
+                  <TodoList
+                    isRoot={true}
+                    todos={filteredTodos}
+                    ancestorsIds={[]}
+                    parentId={null}
+                  />
+                </div>
               </div>
-            </div>
+            </>
           )}
         </>
       )}

@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { editTodo } from "../../redux/slices/todosSlice";
 import { updateTodo } from "../../helpers";
-import { Dropdown } from "../DropdownOptions/Dropdown/Dropdown";
+import { Dropdown } from "../Dropdown/Dropdown";
 
 export const StatusSelect = (props) => {
   const { todo } = props;

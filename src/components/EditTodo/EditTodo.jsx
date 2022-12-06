@@ -3,6 +3,7 @@ import "./editTodo.scss";
 
 export const EditTodo = (props) => {
   const { handleSubmit, editValue, handleEditValue, isLoading } = props;
+
   return (
     <>
       <form className="form" onSubmit={handleSubmit}>
