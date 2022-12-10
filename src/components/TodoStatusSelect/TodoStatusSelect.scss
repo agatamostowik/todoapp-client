@@ -1,0 +1,19 @@
+#todo-status-select {
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .todo-status__label {
+    font-size: 10px;
+    @media (min-width: 900px) {
+      font-size: 12px;
+    }
+  }
+
+  .dropdown__open {
+    top: 36px;
+    left: -9px;
+  }
+}

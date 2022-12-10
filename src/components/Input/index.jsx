@@ -4,7 +4,7 @@ export const Input = (props) => {
   const { id, label, value, onChange, autoComplete, type } = props;
 
   return (
-    <div className="input_component">
+    <div className="input__component">
       <label className="label" htmlFor={id}>
         {label}:
       </label>

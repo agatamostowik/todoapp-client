@@ -80,19 +80,17 @@ export const Signup = () => {
           <div className="signup__content">
             <h2 className="sign__header h2">Create your account</h2>
             <form className="sign__form" onSubmit={handleSubmit}>
-              <div>
-                {inputs.map((input) => {
-                  return (
-                    <Input
-                      id={input.id}
-                      label={input.label}
-                      type={input.type}
-                      value={input.value}
-                      onChange={input.onChange}
-                    />
-                  );
-                })}
-              </div>
+              {inputs.map((input) => {
+                return (
+                  <Input
+                    id={input.id}
+                    label={input.label}
+                    type={input.type}
+                    value={input.value}
+                    onChange={input.onChange}
+                  />
+                );
+              })}
 
               <Button>Sign up</Button>
             </form>

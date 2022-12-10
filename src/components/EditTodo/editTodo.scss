@@ -1,5 +1,35 @@
-.form {
+.edit-todo__exit {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+
+.edit-todo__title {
+  padding-bottom: 14px;
+}
+
+.edit-todo__inputs {
+  padding: 30px;
   display: flex;
   flex-direction: column;
   gap: 22px;
+}
+.edit-todo__buttons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 25px;
+  font-size: 14px;
+  padding: 15px;
+  background-color: #e9e5ef;
+
+  .edit-todo__cancel {
+    font-weight: 500;
+  }
+
+  .btn {
+    font-size: inherit;
+    width: 149.08px;
+    height: 44.44px px;
+  }
 }

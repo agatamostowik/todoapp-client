@@ -1,13 +1,13 @@
-.dropdown-icon {
+.dropdown__icon {
   padding: 10px 5px;
   position: relative;
 }
 .dropdown-container {
   position: relative;
-  padding: 5px;
+  padding: 8px;
 }
 
-.dropdown-open {
+.dropdown__open {
   position: absolute;
   background-color: white;
   border: 1px solid #e4e3e3;
@@ -15,7 +15,7 @@
   z-index: 1;
   box-shadow: rgb(38 57 77) 0px 20px 30px -10px;
 
-  .dropdown-item {
+  .dropdown__item {
     padding: 10px;
     cursor: pointer;
     font-size: 12px;
@@ -28,24 +28,5 @@
     &:hover {
       background-color: #efedf2;
     }
-  }
-}
-
-#options {
-  .dropdown-open {
-    right: 10px;
-  }
-}
-
-#status {
-  .dropdown-open {
-    top: 36px;
-    left: -30px;
-  }
-}
-
-#userPanel {
-  .dropdown-open {
-    right: 0;
   }
 }

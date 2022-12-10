@@ -6,6 +6,7 @@ import { getUrl, updateTodo } from "../../helpers";
 import { Dropdown } from "../Dropdown/Dropdown";
 import { Modal } from "../Modal";
 import { EditTodo } from "../EditTodo/EditTodo";
+import "./SettingsSelect.scss";
 
 const removeTodo = async (todoId) => {
   const url = getUrl();
@@ -97,26 +98,26 @@ export const SettingsSelect = (props) => {
             editValue={editValue}
             handleEditValue={handleEditValue}
             isLoading={isLoading}
+            onClose={setIsEdit}
           />
         </Modal>
       ) : null}
       <div
-        id="options"
-        className="dropdown-icon"
+        id="settings__options"
+        className="dropdown__icon"
         ref={ref}
         onClick={handleDropdownClick}
         open={isDropdownOpen}
       >
         <FiMoreVertical />
-        <div className={`dropdown${isDropdownOpen ? "-open" : ""}`}>
-          {isDropdownOpen ? (
-            <Dropdown
-              isDropdownOpen={isDropdownOpen}
-              options={options}
-              handleClick={onOptionClick}
-            />
-          ) : null}
-        </div>
+
+        {isDropdownOpen ? (
+          <Dropdown
+            isDropdownOpen={isDropdownOpen}
+            options={options}
+            handleClick={onOptionClick}
+          />
+        ) : null}
       </div>
     </>
   );

@@ -1,14 +1,10 @@
-import { useState, useRef } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useState } from "react";
+import { useSelector } from "react-redux";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import { TodoList } from "../TodoList/TodoList";
-import { updateTodo } from "../../helpers";
-import { editTodo } from "../../redux/slices/todosSlice";
 import { Tag } from "../Tag/Tag";
 import "./Todo.scss";
-import { Modal } from "../Modal";
-import { EditTodo } from "../EditTodo/EditTodo";
-import { StatusSelect } from "../StatusSelect/StatusSelect";
+import { TodoStatusSelect } from "../TodoStatusSelect/TodoStatusSelect";
 import { SettingsSelect } from "../SettingsSelect/SettingsSelect";
 
 export const Todo = (props) => {
@@ -37,9 +33,9 @@ export const Todo = (props) => {
             <div className="todo__label">{props.todo.label}</div>
             {isTagExist ? <Tag tags={props.todo.tags} /> : null}
           </div>
-          <StatusSelect todo={props.todo} />
+          <TodoStatusSelect todo={props.todo} />
           <div className="chevron-container" onClick={handleClick}>
-            {isOpen ? <FiChevronDown /> : <FiChevronUp />}
+            {isOpen ? <FiChevronUp /> : <FiChevronDown />}
           </div>
         </div>
         <SettingsSelect todo={props.todo} />

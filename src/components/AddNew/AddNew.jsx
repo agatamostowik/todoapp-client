@@ -56,15 +56,15 @@ export const AddNew = (props) => {
   const isButtonDisabled = isLoading || value.length === 0;
 
   return (
-    <div id="addNew" className="todo-container">
+    <div id="add-new" className="todo-container">
       {!editMode ? (
-        <div className="add-new-label" onClick={handleClick}>
+        <div className="add-new__label" onClick={handleClick}>
           Add new
         </div>
       ) : (
-        <form className="add-new-form" onSubmit={handleSubmit}>
+        <form className="add-new__form" onSubmit={handleSubmit}>
           <input
-            className="add-new-input"
+            className="add-new__input"
             type="text"
             onChange={handleChange}
             value={value}

@@ -9,7 +9,7 @@ export const Modal = (props) => {
   }
 
   return createPortal(
-    <div className="modal_overlay">
+    <div className="modal__overlay">
       <div className="modal">{props.children}</div>
     </div>,
     modal

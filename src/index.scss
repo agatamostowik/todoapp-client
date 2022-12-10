@@ -73,7 +73,7 @@ p {
 .todo-container {
   display: flex;
   border: 1px solid #d5e0e9;
-  border-radius: 5px;
+  border-radius: 8px;
   background-color: white;
   width: 100%;
   min-height: 45px;
@@ -114,13 +114,13 @@ input:focus {
 
 .container__border {
   border-radius: 19.5267px;
+  overflow: hidden;
   border: 7px solid rgba(255, 255, 255, 0.372815);
   width: 100%;
 }
 
 .container {
   background: #faf7ff;
-  border-radius: 13.5267px;
 }
 
 #todolist.container__border {
@@ -130,6 +130,9 @@ input:focus {
 }
 
 .sign__form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
   padding-bottom: 50px;
 }
 .sign__header {

@@ -47,22 +47,21 @@ export const UserPanel = () => {
 
   return (
     <div
-      id="userPanel"
+      id="user_panel"
       ref={ref}
       onClick={handleUserPanelDropdown}
       className="userPanelMenu"
       open={isUserPanelOpen}
     >
       <FiMenu size={35} color="#FFFFFF" />
-      <div className={`dropdown${isUserPanelOpen ? "-open" : ""}`}>
-        {isUserPanelOpen ? (
-          <Dropdown
-            isUserPanelOpen={isUserPanelOpen}
-            options={options}
-            handleClick={signOut}
-          />
-        ) : null}
-      </div>
+
+      {isUserPanelOpen ? (
+        <Dropdown
+          isUserPanelOpen={isUserPanelOpen}
+          options={options}
+          handleClick={signOut}
+        />
+      ) : null}
     </div>
   );
 };

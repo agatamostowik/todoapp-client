@@ -3,8 +3,9 @@ import { useDispatch } from "react-redux";
 import { editTodo } from "../../redux/slices/todosSlice";
 import { updateTodo } from "../../helpers";
 import { Dropdown } from "../Dropdown/Dropdown";
+import "./TodoStatusSelect.scss";
 
-export const StatusSelect = (props) => {
+export const TodoStatusSelect = (props) => {
   const { todo } = props;
   const [isStatusDropdownOpen, setIsStatusDropdownOpen] = useState(false);
 
@@ -44,8 +45,10 @@ export const StatusSelect = (props) => {
   ];
 
   return (
-    <div ref={ref} id="status" className="status-dropdown-container">
-      <div onClick={handleStatusDropdown}>{todo.status}</div>
+    <div ref={ref} id="todo-status-select">
+      <div className="todo-status__label" onClick={handleStatusDropdown}>
+        {todo.status}
+      </div>
       {isStatusDropdownOpen ? (
         <Dropdown
           isStatusDropdownOpen={isStatusDropdownOpen}

@@ -1,19 +1,19 @@
-#addNew.todo-container {
+#add-new.todo-container {
   width: calc(100% - 26px);
   align-items: center;
   padding: 8px;
   height: 43px;
   border: 1px dashed #d5e0e9;
 
-  .add-new-form {
+  .add-new__form {
     display: flex;
     width: 100%;
   }
-  .add-new-input {
+  .add-new__input {
     flex: 4;
     font-size: 12px;
   }
-  .add-new-label {
+  .add-new__label {
     display: flex;
     align-items: center;
     width: 100%;

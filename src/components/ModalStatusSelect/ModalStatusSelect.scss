@@ -1,0 +1,20 @@
+#modal-status-select {
+  position: relative;
+  .select__wrapper {
+    position: relative;
+  }
+
+  .select__chevron {
+    position: absolute;
+    top: 11px;
+    right: 12px;
+  }
+
+  .dropdown__open {
+    left: 0;
+    right: 0;
+  }
+  .dropdown__item {
+    padding: 10px 20px;
+  }
+}
