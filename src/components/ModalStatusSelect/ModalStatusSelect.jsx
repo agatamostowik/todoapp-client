@@ -1,19 +1,14 @@
 import { Dropdown } from "../Dropdown/Dropdown";
 import { useState, useEffect, useRef } from "react";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
-
+import { status, statusOptions } from "../../helpers";
 import "./ModalStatusSelect.scss";
 
-const options = [
-  { label: "New", value: "new" },
-  { label: "In progress", value: "in_progress" },
-  { label: "Done", value: "done" },
-];
+export const ModalStatusSelect = (props) => {
+  const { value, onChange } = props;
 
-export const ModalStatusSelect = () => {
   const [isModalStatusDropdownOpen, setIsModalStatusDropdownOpen] =
     useState(false);
-  const [selectedOption, setSelectedOption] = useState(null);
 
   const ref = useRef();
 
@@ -37,32 +32,25 @@ export const ModalStatusSelect = () => {
   };
 
   const handleSelect = (option) => {
-    setSelectedOption(option);
+    onChange(option);
   };
-
-  const isAnyOptionSelected = selectedOption !== null;
-
-  const getValue = () => {
-    if (isAnyOptionSelected) {
-      const obj = options.find((o) => o.value === selectedOption);
-      return obj.label;
-    } else if (!selectedOption) {
-      return "Select status";
-    }
-  };
-  const value = getValue();
 
   return (
     <div id="modal-status-select" onClick={handleOpen} ref={ref}>
       <div className="select__wrapper">
-        <div className="todo-container">{value}</div>
+        <label className="label" htmlFor="status-select">
+          Select status
+        </label>
+        <div className="todo-container" id="status-select">
+          {status[value]}
+        </div>
         <div className="select__chevron">
           {isModalStatusDropdownOpen ? <FiChevronUp /> : <FiChevronDown />}
         </div>
       </div>
 
       {isModalStatusDropdownOpen ? (
-        <Dropdown options={options} handleClick={handleSelect} />
+        <Dropdown options={statusOptions} handleClick={handleSelect} />
       ) : null}
     </div>
   );

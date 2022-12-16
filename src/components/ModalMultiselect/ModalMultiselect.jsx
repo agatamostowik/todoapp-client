@@ -3,9 +3,12 @@ import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import { getUrl } from "../../helpers";
+import { Tag } from "../Tag/Tag.jsx";
 
-import "../ModalStatusSelect/ModalStatusSelect.scss";
+import "./ModalMultiselect.scss";
 import { setTags } from "../../redux/slices/tagsSlice";
+import { Input } from "../Input";
+import { AddNew } from "../AddNew/AddNew";
 
 const fetchTags = async () => {
   const url = getUrl();
@@ -17,19 +20,54 @@ const fetchTags = async () => {
   return response.json();
 };
 
-export const ModalMultiselect = () => {
+export const ModalMultiselect = (props) => {
+  const { value, onChange } = props;
+
   const [isModalStatusDropdownOpen, setIsModalStatusDropdownOpen] =
     useState(false);
-  const [selectedOption, setSelectedOption] = useState(null);
+  const [newTag, setNewTag] = useState("");
 
   const ref = useRef();
 
   const dispatch = useDispatch();
 
+  const tags = useSelector((state) => {
+    return state.tags.data;
+  });
+
   const offClick = (event) => {
     if (!ref.current.contains(event.target)) {
       setIsModalStatusDropdownOpen(false);
     }
+  };
+
+  const handleOpen = (event) => {
+    setIsModalStatusDropdownOpen(!isModalStatusDropdownOpen);
+    event.stopPropagation();
+  };
+
+  const handleSelect = (tagId) => {
+    const option = tags.find((tag) => tag.id === tagId);
+
+    onChange([...value, option]);
+  };
+
+  const handleRemove = (tag) => {
+    onChange((currentTags) =>
+      currentTags.filter((currentTag) => {
+        return currentTag.name !== tag.name;
+      })
+    );
+  };
+
+  const handleNewTag = (event) => {
+    setNewTag(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.stopPropagation();
+    event.preventDefault();
+    onChange([...value, { name: newTag, id: "new_tag" }]);
   };
 
   useEffect(() => {
@@ -39,15 +77,6 @@ export const ModalMultiselect = () => {
       window.removeEventListener("click", offClick);
     };
   });
-
-  const handleOpen = (event) => {
-    setIsModalStatusDropdownOpen(!isModalStatusDropdownOpen);
-    event.stopPropagation();
-  };
-
-  const handleSelect = (option) => {
-    setSelectedOption(option);
-  };
 
   useEffect(() => {
     async function getTags() {
@@ -61,39 +90,51 @@ export const ModalMultiselect = () => {
     getTags();
   }, []);
 
-  const tags = useSelector((state) => {
-    return state.tags.data;
+  const filteredOptions = tags.filter((tag) => {
+    return !value.some((copyTag) => copyTag.id === tag.id);
   });
 
-  const options = tags.map(({ name }) => ({
+  const options = filteredOptions.map(({ name, id }) => ({
     ["label"]: name,
-    ["value"]: name,
+    ["value"]: id,
   }));
 
-  const isAnyOptionSelected = selectedOption !== null;
-
-  const getValue = () => {
-    if (isAnyOptionSelected) {
-      const obj = options.find((o) => o.value === selectedOption);
-      return obj.label;
-    } else if (!selectedOption) {
-      return "Select tags";
-    }
-  };
-  const value = getValue();
+  const isAddButtonDisabled = value.some((v) => v.name === newTag);
 
   return (
-    <div id="modal-status-select" onClick={handleOpen} ref={ref}>
-      <div className="select__wrapper">
-        <div className="todo-container">{value}</div>
-        <div className="select__chevron">
-          {isModalStatusDropdownOpen ? <FiChevronUp /> : <FiChevronDown />}
+    <div id="modal-multiselect" ref={ref}>
+      <h4 className="modal-multiselect__title">Tags</h4>
+      <div className="modal-multiselect__tags-container">
+        <Tag tags={value} isRemovable={true} handleRemove={handleRemove} />
+      </div>
+      <div className="select__wrapper" onClick={handleOpen}>
+        <label className="label" htmlFor="select-tag">
+          Select an existing tag
+        </label>
+        <div id="select-tag" className="todo-container">
+          Select a tag...
+          <div className="select__chevron">
+            {isModalStatusDropdownOpen ? (
+              <FiChevronUp size="16" />
+            ) : (
+              <FiChevronDown size="16" />
+            )}
+          </div>
         </div>
+
+        {isModalStatusDropdownOpen ? (
+          <Dropdown options={options} handleClick={handleSelect} />
+        ) : null}
       </div>
 
-      {isModalStatusDropdownOpen ? (
-        <Dropdown options={options} handleClick={handleSelect} />
-      ) : null}
+      <AddNew
+        label="Add a new tag"
+        onSubmit={handleSubmit}
+        value={newTag}
+        onChange={handleNewTag}
+        isAddButtonDisabled={isAddButtonDisabled}
+        isLoading={false}
+      />
     </div>
   );
 };

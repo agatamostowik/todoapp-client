@@ -12,10 +12,10 @@ export const Home = () => {
               <div className="home__span">Not another boring...</div>
               <h1 className="home__title">TO-DO list</h1>
               <p className="home__paragraph">
-                Maile data centers have top-notch security and surveillance,
-                with a reliable 99.9% uptime. Benefit from secure email hosting
-                that supports encryption both at rest and end-to-end, along with
-                S/MIME message encryption.
+                A modern and simple task management tool that you can use as an
+                online planner to help you stay more productive. Keep track of
+                your daily tasks with TODO-LIST. Sign in today and explore its
+                features for free.
               </p>
               <div className="home__btn__wrapper">
                 <button className="btn">

@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { editTodo } from "../../redux/slices/todosSlice";
-import { updateTodo } from "../../helpers";
+import { status, statusOptions, updateTodo } from "../../helpers";
 import { Dropdown } from "../Dropdown/Dropdown";
 import "./TodoStatusSelect.scss";
 
@@ -31,28 +31,25 @@ export const TodoStatusSelect = (props) => {
   };
 
   const updateStatus = async (status) => {
+    console.log("updateStatus!!!");
     try {
-      const response = await updateTodo(props.todo.id, { status: status });
+      const body = { status: status };
+      const response = await updateTodo(props.todo.id, body);
+      console.log("response: ", response);
       dispatch(editTodo(response));
       setIsStatusDropdownOpen(false);
     } catch (error) {}
   };
 
-  const options = [
-    { label: "New", value: "new" },
-    { label: "In progress", value: "in_progress" },
-    { label: "Done", value: "done" },
-  ];
-
   return (
     <div ref={ref} id="todo-status-select">
       <div className="todo-status__label" onClick={handleStatusDropdown}>
-        {todo.status}
+        {status[todo.status]}
       </div>
       {isStatusDropdownOpen ? (
         <Dropdown
           isStatusDropdownOpen={isStatusDropdownOpen}
-          options={options}
+          options={statusOptions}
           handleClick={updateStatus}
         />
       ) : null}

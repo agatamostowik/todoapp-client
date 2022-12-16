@@ -6,11 +6,11 @@ export const getUrl = () => {
   }
 };
 
-export const updateTodo = async (todoId, data) => {
+export const updateTodo = async (todoId, body) => {
   const url = getUrl();
   const response = await fetch(`${url}/api/todos/${todoId}/edit`, {
     method: "PUT",
-    body: JSON.stringify(data),
+    body: JSON.stringify(body),
     credentials: "include",
     headers: {
       "Content-Type": "application/json",
@@ -18,4 +18,16 @@ export const updateTodo = async (todoId, data) => {
   });
 
   return response.json();
+};
+
+export const statusOptions = [
+  { label: "New", value: "new" },
+  { label: "In progress", value: "in_progress" },
+  { label: "Done", value: "done" },
+];
+
+export const status = {
+  in_progress: "In progress",
+  new: "New",
+  done: "Done",
 };

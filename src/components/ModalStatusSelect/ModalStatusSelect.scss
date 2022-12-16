@@ -6,7 +6,7 @@
 
   .select__chevron {
     position: absolute;
-    top: 11px;
+    top: 35px;
     right: 12px;
   }
 
@@ -16,5 +16,8 @@
   }
   .dropdown__item {
     padding: 10px 20px;
+  }
+  .todo-container {
+    padding: 13px 16px;
   }
 }

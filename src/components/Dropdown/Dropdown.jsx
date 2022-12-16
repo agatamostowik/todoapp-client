@@ -1,7 +1,7 @@
 import "./Dropdown.scss";
 
 export const Dropdown = (props) => {
-  const { isStatusDropdownOpen, options, handleClick } = props;
+  const { options, handleClick } = props;
 
   return (
     <ul className="dropdown__open">

@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { FiMoreVertical } from "react-icons/fi";
-import { deleteTodo, editTodo } from "../../redux/slices/todosSlice";
-import { getUrl, updateTodo } from "../../helpers";
+import { deleteTodo } from "../../redux/slices/todosSlice";
+import { getUrl } from "../../helpers";
 import { Dropdown } from "../Dropdown/Dropdown";
 import { Modal } from "../Modal";
 import { EditTodo } from "../EditTodo/EditTodo";
@@ -22,7 +22,6 @@ export const SettingsSelect = (props) => {
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
-  const [editValue, setEditValue] = useState(props.todo.label);
   const [isLoading, setIsLoading] = useState(false);
   const ref = useRef();
   const dispatch = useDispatch();
@@ -72,34 +71,11 @@ export const SettingsSelect = (props) => {
     }
   };
 
-  const handleEditValue = (event) => {
-    setEditValue(event.target.value);
-  };
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    try {
-      const response = await updateTodo(props.todo.id, { label: editValue });
-      dispatch(editTodo(response));
-      setIsEdit(false);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  //TODO przesun logike zwiazana z zawartoscia modala poza komponent settingsselect, do edittodo
-
   return (
     <>
       {isEdit ? (
         <Modal isModalOpen={isEdit}>
-          <EditTodo
-            handleSubmit={handleSubmit}
-            editValue={editValue}
-            handleEditValue={handleEditValue}
-            isLoading={isLoading}
-            onClose={setIsEdit}
-          />
+          <EditTodo onClose={setIsEdit} todo={todo} />
         </Modal>
       ) : null}
       <div

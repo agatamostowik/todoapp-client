@@ -4,12 +4,22 @@
   width: 100%;
   gap: 9px;
   padding: 0 10px 10px 10px;
-  .tag {
-    width: 59px;
-    height: 19px;
+  flex-wrap: wrap;
+  .tag__container {
+    // width: 59px;
+    // height: 19px;
+    display: flex;
+    justify-content: space-between;
     background-color: #c0effa;
-    border-radius: 2px;
-    font-size: 10px;
+    border-radius: 7px;
+  }
+
+  .tag__label {
+    font-size: 12px;
     text-align: center;
+    padding: 5px 10px;
+  }
+  .tag__remove {
+    padding-right: 5px;
   }
 }

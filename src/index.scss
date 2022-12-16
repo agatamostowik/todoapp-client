@@ -45,8 +45,19 @@ button {
 h1,
 h2,
 h3,
+h4,
 p {
   margin: 0;
+}
+
+.label {
+  display: block;
+  font-size: 12px;
+  margin-bottom: 5px;
+  @media (min-width: 900px) {
+    padding-bottom: 12px;
+    font-size: 15px;
+  }
 }
 
 .wrapper {
@@ -61,22 +72,14 @@ p {
   padding: 0 2%;
 }
 
-// .add-new-input {
-//   outline: none;
-//   border: none;
-//   padding: 10px;
-//   margin: 0;
-//   width: 100%;
-//   font-size: 16px;
-// }
-
 .todo-container {
   display: flex;
-  border: 1px solid #d5e0e9;
-  border-radius: 8px;
+  border: 1px solid #e7e7e7;
+  border-radius: 9px;
   background-color: white;
   width: 100%;
-  min-height: 45px;
+  font-size: 14px;
+  min-height: 50px;
 }
 /* Buttons */
 
@@ -85,14 +88,10 @@ p {
   margin-top: 27px;
 }
 
-// .add-new-form {
-//   display: flex;
-//   width: 100%;
-// }
 input:focus {
   outline: none !important;
-  // border: 1px solid red;
-  // box-shadow: 0 0 10px #719ece;
+  border-color: #d5e0e9;
+  box-shadow: 0 0 4px #3b38a7;
 }
 
 .link {
@@ -102,15 +101,6 @@ input:focus {
     color: black;
   }
 }
-
-// @mixin container__border {
-//   border-radius: 19.5267px;
-//   border: 7px solid rgba(255, 255, 255, 0.372815);
-// }
-//signin/signup class
-// width: 100%;
-// max-width: 700px;
-// @include container__border;
 
 .container__border {
   border-radius: 19.5267px;

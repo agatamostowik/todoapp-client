@@ -21,8 +21,8 @@ const logIn = async (data) => {
 };
 
 export const Signin = () => {
-  const [email, setEmail] = useState("kochamapawelka@wp.pl");
-  const [password, setPassword] = useState("qwerty123");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const dispatch = useDispatch();
@@ -66,9 +66,11 @@ export const Signin = () => {
                 <div>
                   <Input
                     id="email"
+                    type="email"
                     label="Email"
                     value={email}
                     onChange={handleEmail}
+                    autofocus={true}
                   />
                 </div>
                 <div>

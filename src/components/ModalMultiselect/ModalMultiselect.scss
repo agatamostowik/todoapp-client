@@ -1,0 +1,30 @@
+#modal-multiselect {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 18px 0px;
+  .modal-multiselect__title {
+  }
+
+  .select__wrapper {
+    position: relative;
+  }
+
+  .select__chevron {
+    position: absolute;
+    top: 38px;
+    right: 12px;
+  }
+  .tag__list {
+    padding: 0;
+  }
+  .dropdown__open {
+    left: 0;
+    right: 0;
+  }
+  .todo-container {
+    padding: 13px 16px;
+    width: 100%;
+    border: 1px solid #d5e0e9;
+  }
+}
