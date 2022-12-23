@@ -8,10 +8,10 @@ export const Dropdown = (props) => {
       {options.map((option, index) => (
         <li
           key={index}
+          className="dropdown__item"
           onClick={() => {
             handleClick(option.value);
           }}
-          className="dropdown__item"
         >
           {option.label}
         </li>

@@ -21,8 +21,8 @@ const logIn = async (data) => {
 };
 
 export const Signin = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("example@example.com");
+  const [password, setPassword] = useState("example123");
   const [isLoading, setIsLoading] = useState(false);
 
   const dispatch = useDispatch();

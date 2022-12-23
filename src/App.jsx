@@ -12,6 +12,9 @@ const fetchProfile = async () => {
   const url = getUrl();
   const response = await fetch(`${url}/api/auth/me`, {
     credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
   });
   return response.json();
 };

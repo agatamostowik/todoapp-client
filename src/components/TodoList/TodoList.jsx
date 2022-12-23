@@ -52,8 +52,8 @@ export const TodoList = (props) => {
     }
 
     setIsLoading(false);
-    setEditMode(false);
     setValue("");
+    
   };
 
   return (

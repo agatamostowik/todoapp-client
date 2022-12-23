@@ -28,16 +28,21 @@ export const EditTodo = (props) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    const addedTags = currentTags.filter((tag) => !todo.tags.includes(tag));
+    const removedTags = todo.tags.filter((tag) => !currentTags.includes(tag));
+
     try {
       const body = {
         label: todoLabelValue,
         status: selectedStatusOption,
-        tags: currentTags,
+        removedTags: removedTags,
+        addedTags: addedTags,
       };
 
-      const response = await updateTodo(props.todo.id, body);
-      // dispatch(editTodo(response));
-      // setIsEdit(false);
+      const todo = await updateTodo(props.todo.id, body);
+
+      dispatch(editTodo(todo));
+      onClose(false);
     } catch (error) {
       console.log(error);
     }

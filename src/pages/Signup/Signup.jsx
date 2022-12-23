@@ -2,15 +2,34 @@ import { Link } from "react-router-dom";
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button/Button";
 import { useState } from "react";
+import { getUrl } from "../../helpers";
 import "./signup.scss";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../redux/slices/userSlice";
 
+const registerUser = async (body) => {
+  const url = getUrl();
+
+  const response = await fetch(`${url}/api/auth/signup`, {
+    method: "POST",
+    body: JSON.stringify(body),
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  return response.json();
+};
 export const Signup = () => {
-  const [email, setEmail] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("example@example.com");
+  const [firstName, setFirstName] = useState("John");
+  const [lastName, setLastName] = useState("Doe");
+  const [phoneNumber, setPhoneNumber] = useState("123456789");
+  const [password, setPassword] = useState("example123");
   const [isLoading, setIsLoading] = useState(false);
+
+  const dispatch = useDispatch();
 
   const handleEmail = (event) => {
     setEmail(event.target.value);
@@ -32,7 +51,23 @@ export const Signup = () => {
     setPassword(event.target.value);
   };
 
-  const handleSubmit = async () => {};
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    
+    try {
+      const user = await registerUser({
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        phoneNumber: phoneNumber,
+        password: password,
+      });
+
+      dispatch(setUser({ user: user }));
+    } catch (error) {
+      // TODO: Handle error
+    }
+  };
 
   const inputs = [
     {
@@ -80,9 +115,10 @@ export const Signup = () => {
           <div className="signup__content">
             <h2 className="sign__header h2">Create your account</h2>
             <form className="sign__form" onSubmit={handleSubmit}>
-              {inputs.map((input) => {
+              {inputs.map((input, index) => {
                 return (
                   <Input
+                    key={index}
                     id={input.id}
                     label={input.label}
                     type={input.type}
@@ -92,7 +128,7 @@ export const Signup = () => {
                 );
               })}
 
-              <Button>Sign up</Button>
+              <Button type="submit">Sign up</Button>
             </form>
             <span className="span">
               <span>Have an account? </span>

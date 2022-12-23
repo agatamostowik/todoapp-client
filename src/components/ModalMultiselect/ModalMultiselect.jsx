@@ -65,9 +65,11 @@ export const ModalMultiselect = (props) => {
   };
 
   const handleSubmit = (event) => {
-    event.stopPropagation();
+    // event.stopPropagation();
     event.preventDefault();
-    onChange([...value, { name: newTag, id: "new_tag" }]);
+
+    onChange([...value, { id: "new_tag", name: newTag }]);
+    setNewTag("");
   };
 
   useEffect(() => {
@@ -123,7 +125,15 @@ export const ModalMultiselect = (props) => {
         </div>
 
         {isModalStatusDropdownOpen ? (
-          <Dropdown options={options} handleClick={handleSelect} />
+          options.length > 0 ? (
+            <Dropdown options={options} handleClick={handleSelect} />
+          ) : (
+            <ul className="dropdown__open">
+              <li className="dropdown__item disabled">
+                You have not created any tags yet
+              </li>
+            </ul>
+          )
         ) : null}
       </div>
 
