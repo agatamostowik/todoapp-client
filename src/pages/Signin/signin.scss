@@ -1,14 +1,42 @@
 #signin {
   width: 100%;
+
   @media (min-width: 900px) {
     max-width: 580px;
   }
+
   .signin__content {
-    padding: 80px 42px 95px 42px;
+    padding: 15px 20px;
+
+    @media (min-width: 900px) {
+      padding: 80px 40px;
+    }
   }
 
-  .btn {
-    width: 100%;
-    margin-top: 24px;
+  .signin__header {
+    padding-bottom: 15px;
+    text-align: center;
+
+    @media (min-width: 900px) {
+      padding-bottom: 35px;
+    }
+  }
+
+  .signin__form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding-bottom: 15px;
+
+    @media (min-width: 900px) {
+      gap: 25px;
+      padding-bottom: 25px;
+    }
+  }
+
+  .signin__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }

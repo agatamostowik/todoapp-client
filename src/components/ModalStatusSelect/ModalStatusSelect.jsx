@@ -41,7 +41,7 @@ export const ModalStatusSelect = (props) => {
         <label className="label" htmlFor="status-select">
           Select status
         </label>
-        <div className="todo-container" id="status-select">
+        <div className="input" id="status-select">
           {status[value]}
         </div>
         <div className="select__chevron">
@@ -50,7 +50,7 @@ export const ModalStatusSelect = (props) => {
       </div>
 
       {isModalStatusDropdownOpen ? (
-        <Dropdown options={statusOptions} handleClick={handleSelect} />
+        <Dropdown options={statusOptions} onSelect={handleSelect} />
       ) : null}
     </div>
   );

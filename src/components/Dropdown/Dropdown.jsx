@@ -1,16 +1,16 @@
 import "./Dropdown.scss";
 
 export const Dropdown = (props) => {
-  const { options, handleClick } = props;
+  const { options, onSelect } = props;
 
   return (
-    <ul className="dropdown__open">
+    <ul id="dropdown">
       {options.map((option, index) => (
         <li
           key={index}
           className="dropdown__item"
           onClick={() => {
-            handleClick(option.value);
+            onSelect(option.value);
           }}
         >
           {option.label}

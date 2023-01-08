@@ -7,16 +7,32 @@ import "./TodoStatusSelect.scss";
 
 export const TodoStatusSelect = (props) => {
   const { todo } = props;
-  const [isStatusDropdownOpen, setIsStatusDropdownOpen] = useState(false);
+
+  const [isOpen, setIsOpen] = useState(false);
 
   const dispatch = useDispatch();
-
   const ref = useRef();
 
   const outsideClick = (event) => {
     if (!ref.current.contains(event.target)) {
-      setIsStatusDropdownOpen(false);
+      setIsOpen(false);
     }
+  };
+
+  const handleStatusDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const updateStatus = async (status) => {
+    try {
+      const body = { status: status };
+      const response = await updateTodo(props.todo.id, body);
+
+      dispatch(editTodo(response));
+    } catch (error) {
+      console.log(error);
+    }
+    setIsOpen(false);
   };
 
   useEffect(() => {
@@ -26,33 +42,19 @@ export const TodoStatusSelect = (props) => {
     };
   });
 
-  const handleStatusDropdown = () => {
-    setIsStatusDropdownOpen(!isStatusDropdownOpen);
-  };
-
-  const updateStatus = async (status) => {
-    console.log("updateStatus!!!");
-    try {
-      const body = { status: status };
-      const response = await updateTodo(props.todo.id, body);
-      console.log("response: ", response);
-      dispatch(editTodo(response));
-      setIsStatusDropdownOpen(false);
-    } catch (error) {}
-  };
-
   return (
     <div ref={ref} id="todo-status-select">
-      <div className="todo-status__label" onClick={handleStatusDropdown}>
-        {status[todo.status]}
+      <div className="todo-status-select__content">
+        <div
+          className="todo-status-select__label"
+          onClick={handleStatusDropdown}
+        >
+          {status[todo.status]}
+        </div>
+        {isOpen ? (
+          <Dropdown options={statusOptions} onSelect={updateStatus} />
+        ) : null}
       </div>
-      {isStatusDropdownOpen ? (
-        <Dropdown
-          isStatusDropdownOpen={isStatusDropdownOpen}
-          options={statusOptions}
-          handleClick={updateStatus}
-        />
-      ) : null}
     </div>
   );
 };

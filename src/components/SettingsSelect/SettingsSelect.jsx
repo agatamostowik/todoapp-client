@@ -22,7 +22,7 @@ export const SettingsSelect = (props) => {
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+
   const ref = useRef();
   const dispatch = useDispatch();
 
@@ -35,32 +35,19 @@ export const SettingsSelect = (props) => {
       setIsDropdownOpen(false);
     }
   };
-  useEffect(() => {
-    window.addEventListener("click", outsideClick);
-    return () => {
-      window.removeEventListener("click", outsideClick);
-    };
-  });
 
   const handleRemove = async () => {
-    setIsLoading(true);
     try {
       const response = await removeTodo(props.todo.id);
       dispatch(deleteTodo({ todoIds: response }));
     } catch (error) {
       console.log(error);
     }
-    setIsLoading(false);
   };
 
   const handleDropdownClick = () => {
     setIsDropdownOpen(true);
   };
-
-  const options = [
-    { label: "Edit", value: "edit" },
-    { label: "Remove", value: "remove" },
-  ];
 
   const onOptionClick = (value) => {
     switch (value) {
@@ -71,10 +58,22 @@ export const SettingsSelect = (props) => {
     }
   };
 
+  useEffect(() => {
+    window.addEventListener("click", outsideClick);
+    return () => {
+      window.removeEventListener("click", outsideClick);
+    };
+  });
+
+  const options = [
+    { label: "Edit", value: "edit" },
+    { label: "Remove", value: "remove" },
+  ];
+
   return (
     <>
       {isEdit ? (
-        <Modal isModalOpen={isEdit}>
+        <Modal onClose={setIsEdit} isModalOpen={isEdit}>
           <EditTodo onClose={setIsEdit} todo={todo} />
         </Modal>
       ) : null}
@@ -88,11 +87,7 @@ export const SettingsSelect = (props) => {
         <FiMoreVertical />
 
         {isDropdownOpen ? (
-          <Dropdown
-            isDropdownOpen={isDropdownOpen}
-            options={options}
-            handleClick={onOptionClick}
-          />
+          <Dropdown options={options} onSelect={onOptionClick} />
         ) : null}
       </div>
     </>

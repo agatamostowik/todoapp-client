@@ -1,12 +1,13 @@
-import { Route, Routes, Navigate } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { Home } from "./pages/Home/Home";
 import { Dashboard } from "./pages/Dashboard/Dashboard";
 import { Signin } from "./pages/Signin/Signin";
 import { Signup } from "./pages/Signup/Signup";
 import { useEffect, useState } from "react";
 import { getUrl } from "./helpers";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setUser } from "./redux/slices/userSlice";
+import { Loader } from "./components/Loader";
 
 const fetchProfile = async () => {
   const url = getUrl();
@@ -19,30 +20,28 @@ const fetchProfile = async () => {
   return response.json();
 };
 
-function App() {
+export const App = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const dispatch = useDispatch();
-  const isAuthenticated = useSelector((state) => {
-    return state.user.isAuthenticated;
-  });
 
   useEffect(() => {
-    async function getProfile() {
+    const getProfile = async () => {
       try {
         const user = await fetchProfile();
+
         dispatch(setUser({ user: user }));
       } catch (error) {
         console.log(error);
       }
       setIsLoading(false);
-    }
+    };
 
     getProfile();
   }, []);
 
   if (isLoading) {
-    return <div className="loader" />;
+    return <Loader size="50" />;
   }
 
   return (
@@ -53,6 +52,4 @@ function App() {
       <Route path="/dashboard" element={<Dashboard />} />
     </Routes>
   );
-}
-
-export default App;
+};

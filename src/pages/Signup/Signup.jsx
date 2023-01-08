@@ -1,11 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button/Button";
 import { useState } from "react";
 import { getUrl } from "../../helpers";
-import "./signup.scss";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../../redux/slices/userSlice";
+import "./signup.scss";
 
 const registerUser = async (body) => {
   const url = getUrl();
@@ -31,6 +31,10 @@ export const Signup = () => {
 
   const dispatch = useDispatch();
 
+  const isAuthenticated = useSelector((state) => {
+    return state.user.isAuthenticated;
+  });
+
   const handleEmail = (event) => {
     setEmail(event.target.value);
   };
@@ -53,7 +57,8 @@ export const Signup = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    
+
+    setIsLoading(true);
     try {
       const user = await registerUser({
         firstName: firstName,
@@ -67,6 +72,7 @@ export const Signup = () => {
     } catch (error) {
       // TODO: Handle error
     }
+    setIsLoading(false);
   };
 
   const inputs = [
@@ -108,13 +114,17 @@ export const Signup = () => {
     },
   ];
 
+  if (isAuthenticated) {
+    return <Navigate to="/dashboard" replace={true} />;
+  }
+
   return (
     <div id="signup">
       <div className="container__border">
         <div className="container">
           <div className="signup__content">
-            <h2 className="sign__header h2">Create your account</h2>
-            <form className="sign__form" onSubmit={handleSubmit}>
+            <h2 className="signup__header h2">Create your account</h2>
+            <form className="signup__form" onSubmit={handleSubmit}>
               {inputs.map((input, index) => {
                 return (
                   <Input
@@ -124,17 +134,24 @@ export const Signup = () => {
                     type={input.type}
                     value={input.value}
                     onChange={input.onChange}
+                    isDisabled={isLoading}
                   />
                 );
               })}
 
-              <Button type="submit">Sign up</Button>
+              <div className="signup__button">
+                <Button isLoading={isLoading} type="submit">
+                  Sign up
+                </Button>
+              </div>
             </form>
             <span className="span">
-              <span>Have an account? </span>
-              <Link className="link" to="/signin">
-                Sign in
-              </Link>
+              <span>
+                Have an account?{" "}
+                <Link className="link" to="/signin">
+                  Sign in
+                </Link>
+              </span>
             </span>
           </div>
         </div>

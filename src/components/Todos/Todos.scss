@@ -1,0 +1,17 @@
+#todos {
+  .todos__wrapper {
+    display: flex;
+    gap: 15px;
+    flex-direction: column;
+    margin-left: 25px;
+  }
+
+  .todos__isRoot {
+    padding: 30px 15px 30px 25px;
+    margin-left: 0px;
+  }
+
+  .todos__add_new {
+    width: calc(100% - 36px);
+  }
+}

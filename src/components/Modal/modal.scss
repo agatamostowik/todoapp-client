@@ -1,23 +1,30 @@
-.modal__overlay {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.7);
-  z-index: 2;
-}
+#modal {
+  .modal__overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 2;
+  }
 
-.modal {
-  max-width: 700px;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: #faf7ff;
-  border-radius: 13.5267px;
-  overflow: hidden;
-  z-index: 2;
-  width: 90%;
-  // padding: 15px;
+  .modal__content {
+    max-width: 700px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #faf7ff;
+    border-radius: 13.5267px;
+    overflow: hidden;
+    z-index: 2;
+    width: 90%;
+  }
+
+  .modal__exit {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+  }
 }

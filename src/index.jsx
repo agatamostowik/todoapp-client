@@ -1,13 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App";
-import store from "./redux/store";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
-import "./index.scss";
+import { App } from "./App";
+import store from "./redux/store";
 import "sanitize.css";
 import "sanitize.css/forms.css";
 import "sanitize.css/typography.css";
+import "./index.scss";
 
 // <React.StrictMode>
 // </React.StrictMode>

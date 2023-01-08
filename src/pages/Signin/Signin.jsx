@@ -41,11 +41,11 @@ export const Signin = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setIsLoading(true);
 
+    setIsLoading(true);
     try {
-      const data = { email: email, password: password };
-      const user = await logIn(data);
+      const user = await logIn({ email: email, password: password });
+
       dispatch(setUser({ user: user }));
     } catch (error) {
       console.log("error:", error);
@@ -53,50 +53,52 @@ export const Signin = () => {
     setIsLoading(false);
   };
 
+  if (isAuthenticated) {
+    return <Navigate to="/dashboard" replace={true} />;
+  }
+
   return (
     <div id="signin">
-      {isAuthenticated ? (
-        <Navigate to="/dashboard" replace={true} />
-      ) : (
-        <div className="container__border">
-          <div className="container">
-            <div className="signin__content">
-              <h2 className="sign__header h2">Sign in to your account</h2>
-              <form className="sign__form" onSubmit={handleSubmit}>
-                <div>
-                  <Input
-                    id="email"
-                    type="email"
-                    label="Email"
-                    value={email}
-                    onChange={handleEmail}
-                    autofocus={true}
-                  />
-                </div>
-                <div>
-                  <Input
-                    id="password"
-                    label="Password (8 characters minimum)"
-                    type="password"
-                    value={password}
-                    onChange={handlePassword}
-                    autoComplete="current-password"
-                  />
-                </div>
-                <Button>Sign in</Button>
-              </form>
-              <span className="span">
-                <span>
-                  New here?{" "}
-                  <Link className="link" to="/signup">
-                    Sign up
-                  </Link>
-                </span>
+      <div className="container__border">
+        <div className="container">
+          <div className="signin__content">
+            <h2 className="signin__header h2">Sign in to your account</h2>
+            <form className="signin__form" onSubmit={handleSubmit}>
+              <Input
+                id="email"
+                type="email"
+                label="Email"
+                value={email}
+                onChange={handleEmail}
+                autofocus={true}
+                isDisabled={isLoading}
+              />
+              <Input
+                id="password"
+                label="Password (8 characters minimum)"
+                type="password"
+                value={password}
+                onChange={handlePassword}
+                autoComplete="current-password"
+                isDisabled={isLoading}
+              />
+              <div className="signin__button">
+                <Button isLoading={isLoading} type="submit">
+                  Sign in
+                </Button>
+              </div>
+            </form>
+            <span className="span">
+              <span>
+                New here?{" "}
+                <Link className="link" to="/signup">
+                  Sign up
+                </Link>
               </span>
-            </div>
+            </span>
           </div>
         </div>
-      )}
+      </div>
     </div>
   );
 };

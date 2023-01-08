@@ -6,11 +6,19 @@ import { FiMenu } from "react-icons/fi";
 import { getUrl } from "../../helpers";
 import "./UserPanel.scss";
 
+const logout = async () => {
+  const url = getUrl();
+
+  await fetch(`${url}/api/auth/signout`, {
+    credentials: "include",
+    method: "POST",
+  });
+};
+
 export const UserPanel = () => {
-  const [isUserPanelOpen, setIsUserPanelOpen] = useState(false);
+  const [isOpen, setIsUserPanelOpen] = useState(false);
 
   const dispatch = useDispatch();
-
   const ref = useRef();
 
   const outsideClick = (event) => {
@@ -26,17 +34,14 @@ export const UserPanel = () => {
     };
   });
 
-  const handleUserPanelDropdown = () => {
+  const handleClick = () => {
     setIsUserPanelOpen(true);
   };
 
   const signOut = async () => {
-    const url = getUrl();
     try {
-      const response = await fetch(`${url}/api/auth/signout`, {
-        credentials: "include",
-        method: "POST",
-      });
+      await logout();
+
       dispatch(resetUser());
     } catch (error) {
       console.log(error);
@@ -46,22 +51,12 @@ export const UserPanel = () => {
   const options = [{ label: "Sign out", value: "signout" }];
 
   return (
-    <div
-      id="user_panel"
-      ref={ref}
-      onClick={handleUserPanelDropdown}
-      className="userPanelMenu"
-      open={isUserPanelOpen}
-    >
-      <FiMenu size={35} color="#FFFFFF" />
+    <div id="user_panel" ref={ref}>
+      <div onClick={handleClick}>
+        <FiMenu size={35} color="#ffffff" />
+      </div>
 
-      {isUserPanelOpen ? (
-        <Dropdown
-          isUserPanelOpen={isUserPanelOpen}
-          options={options}
-          handleClick={signOut}
-        />
-      ) : null}
+      {isOpen ? <Dropdown options={options} onSelect={signOut} /> : null}
     </div>
   );
 };

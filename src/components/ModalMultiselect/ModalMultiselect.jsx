@@ -101,7 +101,7 @@ export const ModalMultiselect = (props) => {
     ["value"]: id,
   }));
 
-  const isAddButtonDisabled = value.some((v) => v.name === newTag);
+  const isDisabled = value.some((v) => v.name === newTag);
 
   return (
     <div id="modal-multiselect" ref={ref}>
@@ -113,7 +113,7 @@ export const ModalMultiselect = (props) => {
         <label className="label" htmlFor="select-tag">
           Select an existing tag
         </label>
-        <div id="select-tag" className="todo-container">
+        <div id="select-tag" className="input">
           Select a tag...
           <div className="select__chevron">
             {isModalStatusDropdownOpen ? (
@@ -126,7 +126,7 @@ export const ModalMultiselect = (props) => {
 
         {isModalStatusDropdownOpen ? (
           options.length > 0 ? (
-            <Dropdown options={options} handleClick={handleSelect} />
+            <Dropdown options={options} onSelect={handleSelect} />
           ) : (
             <ul className="dropdown__open">
               <li className="dropdown__item disabled">
@@ -142,7 +142,7 @@ export const ModalMultiselect = (props) => {
         onSubmit={handleSubmit}
         value={newTag}
         onChange={handleNewTag}
-        isAddButtonDisabled={isAddButtonDisabled}
+        isDisabled={isDisabled}
         isLoading={false}
       />
     </div>

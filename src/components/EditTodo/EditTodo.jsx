@@ -1,5 +1,5 @@
 import { Input } from "../Input";
-import { FiX } from "react-icons/fi";
+
 import { ModalStatusSelect } from "../ModalStatusSelect/ModalStatusSelect";
 import { ModalMultiselect } from "../ModalMultiselect/ModalMultiselect";
 import { updateTodo } from "../../helpers";
@@ -49,46 +49,41 @@ export const EditTodo = (props) => {
   };
 
   return (
-    <>
-      <div className="edit-todo__exit" onClick={handleClose}>
-        <FiX />
+    <div id="edit-todo">
+      <div className="edit-todo__inputs">
+        <h2 className="edit-todo__title">Edit todo</h2>
+        <Input
+          id="label"
+          label="Todo label"
+          value={todoLabelValue}
+          onChange={handleSetTodoLabelValue}
+          type="text"
+        />
+        <ModalStatusSelect
+          value={selectedStatusOption}
+          onChange={setSelectedStatusOption}
+        />
+        <ModalMultiselect value={currentTags} onChange={setCurrentTags} />
       </div>
-      <div>
-        <div className="edit-todo__inputs">
-          <h2 className="edit-todo__title">Edit todo</h2>
-          <Input
-            id="label"
-            label="Todo label"
-            value={todoLabelValue}
-            onChange={handleSetTodoLabelValue}
-            type="text"
-          />
-          <ModalStatusSelect
-            value={selectedStatusOption}
-            onChange={setSelectedStatusOption}
-          />
-          <ModalMultiselect value={currentTags} onChange={setCurrentTags} />
+      <div className="edit-todo__buttons">
+        <div className="edit-todo__cancel" onClick={handleClose}>
+          Cancel
         </div>
-        <div className="edit-todo__buttons">
-          <div className="edit-todo__cancel" onClick={handleClose}>
-            Cancel
-          </div>
-          <button
-            onClick={handleSubmit}
-            className="btn"
-            type="submit"
-            disabled={isLoading}
-          >
-            {isLoading ? (
-              <div className="loader-container">
-                <div className="loader"></div>
-              </div>
-            ) : (
-              "Save changes"
-            )}
-          </button>
-        </div>
+        <button
+          onClick={handleSubmit}
+          className="btn"
+          type="submit"
+          disabled={isLoading}
+        >
+          {isLoading ? (
+            <div className="loader-container">
+              <div className="loader" />
+            </div>
+          ) : (
+            "Save changes"
+          )}
+        </button>
       </div>
-    </>
+    </div>
   );
 };

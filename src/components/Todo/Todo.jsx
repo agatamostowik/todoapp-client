@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
-import { TodoList } from "../TodoList/TodoList";
+import { Todos } from "../Todos/Todos";
 import { Tag } from "../Tag/Tag";
 import "./Todo.scss";
 import { TodoStatusSelect } from "../TodoStatusSelect/TodoStatusSelect";
@@ -27,7 +27,7 @@ export const Todo = (props) => {
   return (
     <>
       <div className="row-container">
-        <div className="todo-container">
+        <div className="input">
           <div className="todo__color"></div>
           <div className="todo__label__wrapper">
             <div className="todo__label">{props.todo.label}</div>
@@ -41,7 +41,7 @@ export const Todo = (props) => {
         <SettingsSelect todo={props.todo} />
       </div>
       {isOpen ? (
-        <TodoList
+        <Todos
           isRoot={false}
           todos={filteredTodos}
           ancestorsIds={[...props.todo.ancestorsIds, props.todo.id]}

@@ -1,17 +1,19 @@
 #todo-status-select {
-  position: relative;
-
   display: flex;
   justify-content: center;
   align-items: center;
 
-  .todo-status__label {
+  .todo-status-select__label {
     font-size: 12px;
     cursor: pointer;
   }
 
-  .dropdown__open {
-    top: 62px;
-    left: -9px;
+  .todo-status-select__content {
+    position: relative;
+  }
+
+  #dropdown {
+    top: 20px;
+    right: 0px;
   }
 }

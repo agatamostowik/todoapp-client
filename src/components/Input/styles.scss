@@ -1,16 +1,12 @@
-#input-component {
-  // margin-bottom: 25px;
+#input {
   flex: 3;
   font-size: 16px;
+
   &:focus-visible {
     outline: #1a39b3 auto 1px;
   }
 
-  @media (min-width: 900px) {
-    min-width: 460px;
-  }
-
-  .todo-container {
-    padding: 13px 16px;
+  .input {
+    padding: 14px 16px;
   }
 }

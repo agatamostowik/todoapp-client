@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Button } from "../Button/Button";
 import { Input } from "../Input";
 import "./AddNew.scss";
 
@@ -10,48 +11,52 @@ export const AddNew = (props) => {
     isLoading,
     label,
     placeholder,
-    isAddButtonDisabled,
+    isDisabled,
   } = props;
 
   const [editMode, setEditMode] = useState(false);
 
   const handleClick = () => {
-    setEditMode(!editMode);
+    setEditMode(true);
   };
 
-  const isButtonDisabled =
-    isLoading || value.length === 0 || isAddButtonDisabled;
+  const handleSubmit = async (event) => {
+    await onSubmit(event);
+    setEditMode(false);
+  };
+
+  const isEmpty = value.length === 0;
+
+  const isButtonDisabled = isEmpty || isDisabled;
 
   return (
-    <>
-      <div id="add-new">
-        {label ? <label className="label">{label}</label> : null}
-        {!editMode ? (
-          <div className="add-new__label todo-container" onClick={handleClick}>
-            {placeholder}
-          </div>
-        ) : (
-          <div className="add-new__form">
-            <Input
-              type="text"
-              onChange={onChange}
-              value={value}
-              autofocus={true}
-            />
+    <div id="add-new">
+      {label ? <label className="label">{label}</label> : null}
+      {!editMode ? (
+        <div className="add-new__placeholder input" onClick={handleClick}>
+          {placeholder}
+        </div>
+      ) : (
+        <div className="add-new__form">
+          <Input
+            type="text"
+            onChange={onChange}
+            value={value}
+            autofocus={true}
+          />
 
-            <div className="add-new__btn-cointainer">
-              <button
-                className="btn"
-                type="submit"
-                disabled={isButtonDisabled}
-                onClick={onSubmit}
-              >
-                {isLoading ? <div className="loader"></div> : "Add"}
-              </button>
-            </div>
+          <div className="add-new__button">
+            <Button
+              type="submit"
+              onClick={handleSubmit}
+              isDisabled={isButtonDisabled}
+              isLoading={isLoading}
+            >
+              Add
+            </Button>
           </div>
-        )}
-      </div>
-    </>
+        </div>
+      )}
+    </div>
   );
 };

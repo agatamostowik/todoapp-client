@@ -1,8 +1,9 @@
 #settings__options.dropdown__icon {
-  padding: 15px 9px;
+  padding: 10px;
   position: relative;
   cursor: pointer;
-  .dropdown__open {
+
+  #dropdown {
     right: 10px;
   }
 }
